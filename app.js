@@ -21,12 +21,59 @@ var blogSchema = new mongoose.Schema({
 var Blog = mongoose.model("Blog", blogSchema);
 
 //RESTFUL ROUTES
-Blog.create({
-    title: "Test Blog",
-    image: "https://www.stockfreeimages.com/Stock-Market-Chart-thumb36641746.jpg",
-    body: "Hello this first blog"
+// Blog.create({
+//     title: "Stock Blogs",
+//     image: "https://www.stockfreeimages.com/Stock-Market-Chart-thumb36641746.jpg",
+//     body: "stocks chart"
+// });
+
+//Routing
+
+app.get("/", function(req, res) {
+    res.redirect("/blogs");
 });
 
+//INDEX ROUTE
+app.get("/blogs", function(req, res) {
+    Blog.find({}, function(err, blogs) {
+        if (err) {
+            console.log("Error");
+        } else {
+            res.render("index", { blogs: blogs });
+        }
+    });
+
+});
+
+//NEW ROUTE
+//CREATE NEW ROUTE
+
+app.get("/blogs/new", function(req, res) {
+    res.render("new");
+});
+
+app.post("/blogs", function(req, res) {
+    //create blog
+    Blog.create(req.body.blog, function(err, newBlog) {
+        if (err) {
+            res.render("new");
+        } else {
+            res.redirect("/blogs");
+        }
+    });
+    //redirect
+});
+
+//SHOW
+app.get("/blogs/:id", function(req, res) {
+    Blog.findById(req.params.id, function(err, foundBlog) {
+        if (err) {
+            res.redirect("/blogs");
+        } else {
+            res.render("show", { blog: foundBlog });
+        }
+    });
+});
 app.listen(port, function() {
     console.log("Server is running");
 });
