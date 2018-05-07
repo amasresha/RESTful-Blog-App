@@ -2,7 +2,7 @@ var express = require("express");
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 var app = express();
-var port = 3500;
+var port = 4500;
 
 //APP config
 mongoose.connect("mongodb://localhost/restful_blog_app");
@@ -73,6 +73,11 @@ app.get("/blogs/:id", function(req, res) {
             res.render("show", { blog: foundBlog });
         }
     });
+});
+
+//EDIT ROUTE
+app.get("./blogs/:id/edit", function(req, res) {
+    res.render("edit");
 });
 app.listen(port, function() {
     console.log("Server is running");
