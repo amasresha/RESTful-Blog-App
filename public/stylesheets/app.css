@@ -5,3 +5,11 @@ i.icon {
 .container.main {
     margin: 7em;
 }
+
+#form {
+    margin-left: 5em;
+}
+
+#delete {
+    display: inline;
+}
