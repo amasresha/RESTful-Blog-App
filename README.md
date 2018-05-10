@@ -1,8 +1,11 @@
 # RESTful-Blog-App
 
-Using this app, you can create a simple bloggin app. A post has title, image and content section.
+This shows a simple blogging app. 
+A post contains title , image and content.
 
-You can create, read, update and delete (CRUD) posts. 
+It is possible to create a new post, read, update and delete existing posts(CRUD).
+
+Cheers!!
 
 
 
